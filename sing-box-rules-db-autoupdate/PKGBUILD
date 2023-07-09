@@ -1,0 +1,56 @@
+pkgname=sing-box-rules-db-autoupdate
+_pkgname=sing-box-rules-db
+pkgdesc="Enhanced edition of sing-box rules db files, Automaitcally update."
+pkgver=1
+pkgrel=1
+arch=('any')
+url="https://github.com/lyc8503/sing-box-rules"
+tag=$(git ls-remote --tags --refs --sort="version:refname" "$url".git | awk -F/ 'END{print$NF}')
+license=('GPL')
+provides=('sing-geoip' 'sing-geosite')
+conflicts=('sing-geoip' 'sing-geosite')
+
+makedepends=('git')
+depends=('curl')
+
+install="${pkgname}.install"
+
+source=("${url}/releases/latest/download/geoip.db"
+        "${url}/releases/latest/download/geosite.db"
+         "${pkgname}"
+        "${pkgname}.install"
+        "${pkgname}.sysusers"
+        "${pkgname}.tmpfiles"
+        "${pkgname}.service"
+        "${pkgname}.timer")
+
+
+package() {
+     install -Dm644 "./geoip.db" "${pkgdir}/var/lib/${_pkgname}/geoip.db"
+     install -Dm644 "./geosite.db" "${pkgdir}/var/lib/${_pkgname}/geosite.db"
+      
+     mkdir -p "${pkgdir}/usr/share/sing-box"
+
+     ln -sf "/var/lib/${_pkgname}/"geosite.db "${pkgdir}/usr/share/sing-box/"
+     ln -sf "/var/lib/${_pkgname}/"geoip.db "${pkgdir}/usr/share/sing-box/"
+
+
+     install -Dm755 "./${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+     install -Dm644 "./${pkgname}.sysusers" "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
+     install -Dm644 "./${pkgname}.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/${pkgname}.conf"
+     install -Dm644 "./${pkgname}.service" "${pkgdir}/usr/lib/systemd/system/${pkgname}.service"
+     install -Dm644 "./${pkgname}.timer" "${pkgdir}/usr/lib/systemd/system/${pkgname}.timer"
+
+}
+
+
+
+
+sha256sums=('fbdee9f22884f3c799a694b64f87655ca55bbff21492557e7a4a03b4c1b692dc'
+            '3f4ef5023e2be7bab4bb7e887845574db07f40b7553141f332c42c2325a78313'
+            '33b7e76d825a4e97ee0d070970ffbfdb70f2b6764c63f814a27b49bebc2cfa1a'
+            'b02a1feffcf7fa0e0927ce0b0dda9e4ca64aa7207009afb9aa4e605cfe79c1b5'
+            '62487f3078913786f8413cee9f739c59c2e21beaa9a7f7f0a2af8e827d08f0a5'
+            '5682c0a16b5e2932298d977800c29012a92aa44c7e4ae4fb804422fc7d7c3473'
+            'a0d3b82daab8b8a0d2a21264e5ccb60a5019f935436095db6264500a7703a111'
+            '14db1a117eb95452600ca121aeb6da498eba148ff2946d502726d20703b833c4')

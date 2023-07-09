@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e 
+
+Github="https://github.com/lyc8503/sing-box-rules/releases/latest/download"
+
+download_files() {
+ 
+   cd /tmp || exit
+   echo "Fetching geoip.db and geosite.db "
+   curl -LO "${1}/geoip.db"
+   curl -LO "${1}/geosite.db"
+   rm -vf $(find . -maxdepth 1 -type f ! \( -name "geo*.db" -o -name "\.*" \))
+}
+
+download_files $Github
+

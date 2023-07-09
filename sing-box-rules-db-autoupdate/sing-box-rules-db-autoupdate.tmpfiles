@@ -1,0 +1,2 @@
+d /var/lib/sing-box-rules-db  0755  sing-box-rules-db  sing-box-rules-db  -  -
+Z /var/lib/sing-box-rules-db  -  sing-box-rules-db  sing-box-rules-db  -  -

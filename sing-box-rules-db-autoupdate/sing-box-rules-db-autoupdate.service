@@ -1,0 +1,12 @@
+[Unit]
+Description = Service for update sing-box-db-rules files
+After = network.target
+
+[Service]
+Type = oneshot
+User = sing-box-rules-db
+Group = sing-box-rules-db
+
+WorkingDirectory = /var/lib/sing-box-rules-db
+ExecStart = /usr/bin/sing-box-rules-db-autoupdate
+

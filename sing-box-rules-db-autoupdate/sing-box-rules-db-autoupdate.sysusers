@@ -1,0 +1,3 @@
+g sing-box-rules-db  -  -
+u sing-box-rules-db  -  "account for sing-box-rules-db autoupdate"   /var/lib/sing-box-rules-db
+m sing-box-rules-db  sing-box-rules-db

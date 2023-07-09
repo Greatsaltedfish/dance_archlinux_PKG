@@ -1,0 +1,8 @@
+post_install() {
+  systemctl enable --now sing-box-rules-db-autoupdate.timer
+}
+
+pre_remove() {
+  systemctl disable sing-box-rules-db-autoupdate.timer
+}
+
