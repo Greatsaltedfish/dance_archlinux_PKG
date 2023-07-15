@@ -6,7 +6,7 @@ Github="https://github.com/lyc8503/sing-box-rules/releases/latest/download"
 
 download_files() {
  
-   cd /tmp || exit
+   cd /var/lib/sing-box-rules-db || exit
    echo "Fetching geoip.db and geosite.db "
    curl -LO "${1}/geoip.db"
    curl -LO "${1}/geosite.db"
