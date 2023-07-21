@@ -8,8 +8,7 @@ download_files() {
  
    cd /var/lib/sing-box-rules-db || exit
    echo "Fetching geoip.db and geosite.db "
-   curl -LO "${1}/geoip.db"
-   curl -LO "${1}/geosite.db"
+   curl -LO "${1}/geo{ip,site,ip-cn}"
    rm -vf $(find . -maxdepth 1 -type f ! \( -name "geo*.db" -o -name "\.*" \))
 }
 
