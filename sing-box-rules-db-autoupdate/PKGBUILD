@@ -33,6 +33,7 @@ package() {
      mkdir -p "${pkgdir}/usr/share/sing-box"
 
      ln -sf "/var/lib/${_pkgname}/"geosite.db "${pkgdir}/usr/share/sing-box/"
+     ln -sf "/var/lib/${_pkgname}/"geoip-cn.db "${pkgdir}/usr/share/sing-box/"
      ln -sf "/var/lib/${_pkgname}/"geoip.db "${pkgdir}/usr/share/sing-box/"
 
 
@@ -46,9 +47,9 @@ package() {
 
 
 
-sha256sums=('70a8cc9137c0a202f5a016815ef27cb0b42f5a9be6e096f9f30469bb1d12dd93'
+sha256sums=('fbdee9f22884f3c799a694b64f87655ca55bbff21492557e7a4a03b4c1b692dc'
             '659aaddc0bb3f5706d0ed664722b4595f2e8c2100dd192818447ea1a250cb88e'
-            'cc21f2c2b825a10dd896a323d9c170eb0160c5b22d1fc903e199cd26421679f2'
+            '3f4ef5023e2be7bab4bb7e887845574db07f40b7553141f332c42c2325a78313'
             'f419fb6e3b006a1e858a61da4c2d46486dd22c31db31322b3dbc5cebeed6160c'
             'b02a1feffcf7fa0e0927ce0b0dda9e4ca64aa7207009afb9aa4e605cfe79c1b5'
             '62487f3078913786f8413cee9f739c59c2e21beaa9a7f7f0a2af8e827d08f0a5'
